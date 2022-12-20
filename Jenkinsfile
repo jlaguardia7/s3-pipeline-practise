@@ -66,7 +66,7 @@ options {
                 }
             }
         }
-        stage('Hello') {
+        stage('Permission') {
             steps {
                 sh '''
                 ls 
@@ -75,6 +75,128 @@ options {
                 uname -r
                 echo 'everythings looking smooth!!!'
                 '''
+
+        stage('Cleaning') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+
+        stage('Sonarqube') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+            }
+        }
+        stage('Build-Dev') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                    }
+                }
+        stage('Build-Sandbox') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                    }
+                }
+        stage('Build-Prod') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                    }
+                }
+        stage('login') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                    }
+                }
+        stage('Push-to-dockerhub-dev') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                    }
+                }
+        stage('update helm charts-sanbox') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                    }
+                }
+        stage('update helm charts-dev') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                    }
+                }
+        stage('update helm charts-prod') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                            }
+                        }
+                    }
+                }
             }
         }
     }

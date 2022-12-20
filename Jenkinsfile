@@ -77,6 +77,9 @@ options {
                 uname -r
                 echo 'everythings looking smooth!!!'
                 '''
+        
+            }
+        }
 
         stage('Cleaning') {
             steps {
@@ -87,8 +90,9 @@ options {
                 uname -r
                 echo 'everythings looking smooth!!!'
                 '''
-
-
+                
+            }
+        }
         stage('Sonarqube') {
             steps {
                 sh '''
@@ -199,7 +203,3 @@ options {
                         }
                     }
                 }
-            }
-        }
-    }
-}

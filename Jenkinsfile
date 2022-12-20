@@ -201,6 +201,18 @@ options {
 
                             }
                         }
+        stage('Wait for argocd') {
+            steps {
+                sh '''
+                ls 
+                pwd
+                lsblk
+                uname -r
+                echo 'everythings looking smooth!!!'
+                '''
+
+                            }
+                        }
                     }
 post {
     

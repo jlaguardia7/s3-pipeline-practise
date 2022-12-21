@@ -19,44 +19,44 @@ options {
                         parameters([
                         
                         choice(
-                            choices: ['Dev', 'Sandbox', 'Prod'], 
+                            choices: ['DEV', 'SANDBOX', 'PROD'], 
                             name: 'Environment'
                                  
                                 ),
 
-                          string(
+                        string(
                             defaultValue: 's4user',
                             name: 'User',
-			    description: 'Required to enter your name',
+			                description: 'Required to enter your name',
                             trim: true
                             ),
 
-                            string(
+                        string(
                             defaultValue: 'eric-001',
                             name: 'DBTag',
-			    description: 'Required to enter your image tag',
+			                description: 'Required to enter your image tag',
                             trim: true
                             ),
 
-                            string(
+                        string(
                             defaultValue: 'eric-001',
                             name: 'UITag',
-			    description: 'Required to enter your image tag',
+			                description: 'Required to enter your image tag',
                             trim: true
                             ),
 
-                            string(
+                        string(
                             defaultValue: 'eric-001',
                             name: 'WEATHERTag',
-			    description: 'Required to enter your image tag',
+			                description: 'Required to enter your image tag',
                             trim: true
                             ),
                 
 
-                            string(
+                        string(
                             defaultValue: 'eric-001',
                             name: 'AUTHTag',
-			    description: 'Required to enter your image tag',
+			                description: 'Required to enter your image tag',
                             trim: true
 
                             
@@ -108,6 +108,13 @@ echo $!
             }
         }
         stage('Build-Dev') {
+            when{ 
+          
+          expression {
+            env.Environment == 'DEV' }
+          
+            }
+            
             steps {
                 sh '''
                 cd UI
@@ -127,6 +134,13 @@ echo $!
                     }
                 }
         stage('Build-Sandbox') {
+            when{ 
+          
+          expression {
+            env.Environment == 'SANDBOX' }
+          
+            }
+            
             steps {
                 sh '''
                 cd UI
@@ -146,6 +160,13 @@ echo $!
                     }
                 }
         stage('Build-Prod') {
+            when{ 
+          
+          expression {
+            env.Environment == 'SANDBOX' }
+          
+            }
+            
             steps {
                 sh '''
                 cd UI

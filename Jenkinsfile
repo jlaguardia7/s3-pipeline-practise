@@ -163,10 +163,10 @@ echo $!
             when{ 
           
           expression {
-            env.Environment == 'SANDBOX' }
+            env.Environment == 'PROD' }
           
             }
-            
+
             steps {
                 sh '''
                 cd UI

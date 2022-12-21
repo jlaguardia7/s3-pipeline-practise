@@ -91,15 +91,20 @@ echo $!
             }
         }
         stage('Sonarqube') {
-            steps {
-                sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
-                '''
-
+            agent {
+                docker {
+                  image 'sonarsource/sonar-scanner-cli:4.7.0'
+                }
+               }
+               environment {
+        CI = 'true'
+        //  scannerHome = tool 'Sonar'
+        scannerHome='/opt/sonar-scanner'
+    }
+            steps{
+                withSonarQubeEnv('Sonar') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
             }
         }
         stage('Build-Dev') {

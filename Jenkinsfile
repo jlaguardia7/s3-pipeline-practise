@@ -33,21 +33,21 @@ options {
 
                             string(
                             defaultValue: 'eric-001',
-                            name: 'DB-Tag',
+                            name: 'DBTag',
 			    description: 'Required to enter your image tag',
                             trim: true
                             ),
 
                             string(
                             defaultValue: 'eric-001',
-                            name: 'UI-Tag',
+                            name: 'UITag',
 			    description: 'Required to enter your image tag',
                             trim: true
                             ),
 
                             string(
                             defaultValue: 'eric-001',
-                            name: 'Weather-Tag',
+                            name: 'WEATHERTag',
 			    description: 'Required to enter your image tag',
                             trim: true
                             ),
@@ -55,7 +55,7 @@ options {
 
                             string(
                             defaultValue: 'eric-001',
-                            name: 'AUTH-Tag',
+                            name: 'AUTHTag',
 			    description: 'Required to enter your image tag',
                             trim: true
 
@@ -110,11 +110,18 @@ echo $!
         stage('Build-Dev') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+                cd UI
+                docker build -t devopseasylearning2021/s4-ui:$UITag .
+                cd -
+                cd DB
+                docker build -t devopseasylearning2021/s4-db:$DBTag .
+                cd -
+                cd auth 
+                docker build -t devopseasylearning2021/s4-auth:$AUTHTag .
+                cd -
+                cd weather 
+                docker build -t devopseasylearning2021/s4-weather:$WEATHERTag .
+                cd -
                 '''
 
                     }
@@ -122,11 +129,7 @@ echo $!
         stage('Build-Sandbox') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+              
                 '''
 
                     }
@@ -134,11 +137,7 @@ echo $!
         stage('Build-Prod') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+               
                 '''
 
                     }
@@ -146,11 +145,7 @@ echo $!
         stage('login') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+         
                 '''
 
                     }
@@ -158,11 +153,7 @@ echo $!
         stage('Push-to-dockerhub-dev') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+       
                 '''
 
                     }
@@ -170,11 +161,7 @@ echo $!
         stage('update helm charts-sanbox') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+           
                 '''
 
                     }
@@ -182,11 +169,7 @@ echo $!
         stage('update helm charts-dev') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+            
                 '''
 
                     }
@@ -194,11 +177,7 @@ echo $!
         stage('update helm charts-prod') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+        
                 '''
 
                             }
@@ -206,11 +185,7 @@ echo $!
         stage('Wait for argocd') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+
                 '''
 
                             }

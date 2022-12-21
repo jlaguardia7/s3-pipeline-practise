@@ -72,13 +72,9 @@ options {
             steps {
                 sh '''
                 cat <<EOF > check.sh
-
 		#! /bin/bash
-		
 		USER=${User}
-		
 		cat permission.txt | grep -i $USER
-		
 		if
 		[[ $? -eq 0 ]]
 		then
@@ -87,8 +83,8 @@ options {
 		echo "You DON'T have permission torun this job"
 		exit
 		fi
+		bash -x check.sh
                 '''
-        
             }
         }
 

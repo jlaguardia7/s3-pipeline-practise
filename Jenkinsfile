@@ -73,7 +73,7 @@ options {
                 sh '''
                 cat <<EOF > check.sh
 #! /bin/bash
-cat permission.txt | grep -O $USER
+cat permission.txt | grep -o $USER
 if
 [[ $? -eq 0 ]]
 then

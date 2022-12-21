@@ -19,12 +19,12 @@ options {
                         parameters([
                         
                         choice(
-                            choices: ['Dev', 'Sandbox', 'Prod'], 
+                            choices: ['DEV', 'SANDBOX', 'PROD'], 
                             name: 'Environment'
                                  
                                 ),
 
-                          string(
+                            string(
                             defaultValue: 's4user',
                             name: 'User',
 			    description: 'Required to enter your name',

@@ -71,11 +71,22 @@ options {
         stage('Permission') {
             steps {
                 sh '''
-                ls 
-                pwd
-                lsblk
-                uname -r
-                echo 'everythings looking smooth!!!'
+                cat <<EOF > check.sh
+
+		#! /bin/bash
+		
+		USER=${User}
+		
+		cat permission.txt | grep -i $USER
+		
+		if
+		[[ $? -eq 0 ]]
+		then
+		echo "You have permission to run this job"
+		else
+		echo "You DON'T have permission torun this job"
+		exit
+		fi
                 '''
         
             }

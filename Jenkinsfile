@@ -80,9 +80,10 @@ options {
 		then
 		echo "You have permission to run this job"
 		else
-		echo "You DON'T have permission torun this job"
+		echo "You DON'T have permission to run this job"
 		exit 1
 		fi
+        EOF
 		bash -x check.sh
                 '''
             }

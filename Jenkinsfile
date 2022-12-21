@@ -1,8 +1,11 @@
 pipeline {
     agent {
-     label ("node1 || node2 ||  node3 || node4 ||  node5 ||  branch ||  main ||  jenkins-node || docker-agent ||  jenkins-docker2 ||  preproduction ||  production")
+        label ("node1 || node2 ||  node3 || node4 ||  node5 ||  branch ||  main ||  jenkins-node || docker-agent ||  jenkins-docker2 ||  preproduction ||  production")
             }
-
+        environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+    
 options {
     buildDiscarder(logRotator(numToKeepStr: '2'))
     disableConcurrentBuilds()
@@ -196,7 +199,7 @@ echo $!
         stage('Push-to-dockerhub-dev') {
             steps {
                 sh '''
-
+                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
                 '''
 
                     }

@@ -129,7 +129,18 @@ echo $!
         stage('Build-Sandbox') {
             steps {
                 sh '''
-              
+                cd UI
+                docker build -t devopseasylearning2021/s4-ui:$UITag .
+                cd -
+                cd DB
+                docker build -t devopseasylearning2021/s4-db:$DBTag .
+                cd -
+                cd auth 
+                docker build -t devopseasylearning2021/s4-auth:$AUTHTag .
+                cd -
+                cd weather 
+                docker build -t devopseasylearning2021/s4-weather:$WEATHERTag .
+                cd -
                 '''
 
                     }
@@ -137,7 +148,18 @@ echo $!
         stage('Build-Prod') {
             steps {
                 sh '''
-               
+                cd UI
+                docker build -t devopseasylearning2021/s4-ui:$UITag .
+                cd -
+                cd DB
+                docker build -t devopseasylearning2021/s4-db:$DBTag .
+                cd -
+                cd auth 
+                docker build -t devopseasylearning2021/s4-auth:$AUTHTag .
+                cd -
+                cd weather 
+                docker build -t devopseasylearning2021/s4-weather:$WEATHERTag .
+                cd -
                 '''
 
                     }
@@ -145,7 +167,7 @@ echo $!
         stage('login') {
             steps {
                 sh '''
-         
+
                 '''
 
                     }
@@ -153,7 +175,7 @@ echo $!
         stage('Push-to-dockerhub-dev') {
             steps {
                 sh '''
-       
+
                 '''
 
                     }
@@ -161,7 +183,7 @@ echo $!
         stage('update helm charts-sanbox') {
             steps {
                 sh '''
-           
+
                 '''
 
                     }
@@ -169,7 +191,7 @@ echo $!
         stage('update helm charts-dev') {
             steps {
                 sh '''
-            
+
                 '''
 
                     }
@@ -177,7 +199,7 @@ echo $!
         stage('update helm charts-prod') {
             steps {
                 sh '''
-        
+
                 '''
 
                             }

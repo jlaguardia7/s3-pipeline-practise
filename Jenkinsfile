@@ -19,12 +19,12 @@ options {
                         parameters([
                         
                         choice(
-                            choices: ['DEV', 'SANDBOX', 'PROD'], 
+                            choices: ['Dev', 'Sandbox', 'Prod'], 
                             name: 'Environment'
                                  
                                 ),
 
-                            string(
+                          string(
                             defaultValue: 's4user',
                             name: 'User',
 			    description: 'Required to enter your name',
@@ -74,14 +74,14 @@ options {
                 cat <<EOF > check.sh
 		#! /bin/bash
 		USER=${User}
-		cat permission.txt | grep -i $USER
+		cat permission.txt | grep -o $USER
 		if
 		[[ $? -eq 0 ]]
 		then
 		echo "You have permission to run this job"
 		else
 		echo "You DON'T have permission torun this job"
-		exit
+		exit 1
 		fi
 		bash -x check.sh
                 '''

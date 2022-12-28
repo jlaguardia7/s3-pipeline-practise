@@ -393,9 +393,9 @@ EOF
             }
         }
     }
-}
 
-post    
+
+post {
    
    success {
       slackSend (channel: '#development-alerts', color: 'good', message: "SUCCESSFUL: Application S4-EKTSS  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
@@ -413,3 +413,6 @@ post
     cleanup {
       deleteDir()
     }
+}
+
+}

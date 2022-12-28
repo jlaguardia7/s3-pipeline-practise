@@ -110,13 +110,13 @@ echo $!
     //             }
     //         }
     //     }
-    //     stage('Build-Dev') {
-    //         when{ 
+        stage('Build-Dev') {
+            when{ 
           
-    //             expression {
-    //               env.Environment == 'DEV' }
+                expression {
+                  env.Environment == 'DEV' }
           
-    //         }
+            }
             
             steps {
                 sh '''
@@ -414,5 +414,4 @@ post {
       deleteDir()
     }
 }
-
 }

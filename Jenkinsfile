@@ -113,8 +113,8 @@ echo $!
         stage('Build-Dev') {
             when{ 
           
-          expression {
-            env.Environment == 'DEV' }
+                expression {
+                  env.Environment == 'DEV' }
           
             }
             
@@ -139,8 +139,8 @@ echo $!
         stage('Build-Sandbox') {
             when{ 
           
-          expression {
-            env.Environment == 'SANDBOX' }
+                expression {
+                  env.Environment == 'SANDBOX' }
           
             }
             
@@ -165,8 +165,8 @@ echo $!
         stage('Build-Prod') {
             when{ 
           
-          expression {
-            env.Environment == 'PROD' }
+                expression {
+                  env.Environment == 'PROD' }
           
             }
 
@@ -191,55 +191,211 @@ echo $!
         stage('login') {
             steps {
                 sh '''
-
-                '''
-
-                    }
-                }
-        stage('Push-to-dockerhub-dev') {
-            steps {
-                sh '''
                 echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
                 '''
 
                     }
                 }
-        stage('update helm charts-sanbox') {
+        stage('Push-to-dockerhub-dev') {
+            when{ 
+            
+                expression {
+                  env.Environment == 'DEV' }
+          
+            }
             steps {
                 sh '''
+                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITAG
+                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTAG
+                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTAH
+                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTAG
+                '''
 
+                    }
+                }
+        stage('Push-to-dockerhub-sandbox') {
+            when{ 
+          
+                expression {
+                  env.Environment == 'SANDBOX' }
+          
+            }
+
+            steps {
+                sh '''
+                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITAG
+                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTAG
+                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTAH
+                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTAG
+                '''
+
+                    }
+                }
+        stage('Push-to-dockerhub-prod') {
+            when{ 
+          
+                expression {
+                  env.Environment == 'PROD' }
+          
+            }
+
+            steps {
+                sh '''
+                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITAG
+                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTAG
+                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTAH
+                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTAG
                 '''
 
                     }
                 }
         stage('update helm charts-dev') {
+            when{ 
+            
+                expression {
+                  env.Environment == 'DEV' }
+            }
             steps {
-                sh '''
+	        script {
+	          withCredentials([
+	            string(credentialsId: 'juan-image', variable: 'TOKEN')
+	          ]) {
 
+	            sh '''
+                git config --global user.name "jlaguardia7"
+                git config --global user.email jlaguard721@gmail.com
+                rm -rf s4-pipeline-practise || true
+                git clone https://jlaguardia7:$TOKEN@github.com/jlaguardia7/s4-pipeline-practise.git
+                cd s4-pipeline-practise
+        
+cat <<EOF > dev-values.yaml           
+                image:
+                  db:
+                     repository: devopseasylearning2021/s4-db
+                     tag: "$DBTag"
+                  ui:
+                     repository: devopseasylearning2021/s4-ui
+                     tag: "$UITag"
+                  auth:
+                     repository: devopseasylearning2021/s4-auth
+                     tag: "$AUTHTag"
+                  weather:
+                     repository: devopseasylearning2021/s4-weather
+                     tag: "$WEATHERTag"
+EOF
+                git add -A
+                git commit -m "testing jenkins"
+                git push https://jlaguardia7:$TOKEN@github.com/jlaguardia7/s4-pipeline-practise.git
                 '''
 
                     }
                 }
-        stage('update helm charts-prod') {
+            }
+        }
+        stage('update helm charts-sandbox') {
+            when{ 
+            
+                expression {
+                  env.Environment == 'SANDBOX' }
+            }
             steps {
-                sh '''
+	        script {
+	          withCredentials([
+	            string(credentialsId: 'juan-image', variable: 'TOKEN')
+	          ]) {
 
+	            sh '''
+                git config --global user.name "jlaguardia7"
+                git config --global user.email jlaguard721@gmail.com
+                rm -rf s4-pipeline-practise || true
+                git clone https://jlaguardia7:$TOKEN@github.com/jlaguardia7/s4-pipeline-practise.git
+                cd s4-pipeline-practise
+        
+cat <<EOF > sandbox-values.yaml           
+                image:
+                  db:
+                     repository: devopseasylearning2021/s4-db
+                     tag: "$DBTag"
+                  ui:
+                     repository: devopseasylearning2021/s4-ui
+                     tag: "$UITag"
+                  auth:
+                     repository: devopseasylearning2021/s4-auth
+                     tag: "$AUTHTag"
+                  weather:
+                     repository: devopseasylearning2021/s4-weather
+                     tag: "$WEATHERTag"
+EOF
+                git add -A
+                git commit -m "testing jenkins"
+                git push https://jlaguardia7:$TOKEN@github.com/jlaguardia7/s4-pipeline-practise.git
                 '''
 
-                            }
-                        }
-        stage('Wait for argocd') {
-            steps {
-                sh '''
-
-                '''
-
-                            }
-                        }
                     }
+                }
+            }
+        }
+        stage('update helm charts-prod') {
+            when{ 
+            
+                expression {
+                  env.Environment == 'PROD' }
+            }
+        
+            steps {
+	        script {
+	          withCredentials([
+	            string(credentialsId: 'juan-image', variable: 'TOKEN')
+	          ]) {
 
+	            sh '''
+                git config --global user.name "jlaguardia7"
+                git config --global user.email jlaguard721@gmail.com
+                rm -rf s4-pipeline-practise || true
+                git clone https://jlaguardia7:$TOKEN@github.com/jlaguardia7/s4-pipeline-practise.git
+                cd s4-pipeline-practise
+        
+cat <<EOF > dev-values.yaml           
+                image:
+                  db:
+                     repository: devopseasylearning2021/s4-db
+                     tag: "$DBTag"
+                  ui:
+                     repository: devopseasylearning2021/s4-ui
+                     tag: "$UITag"
+                  auth:
+                     repository: devopseasylearning2021/s4-auth
+                     tag: "$AUTHTag"
+                  weather:
+                     repository: devopseasylearning2021/s4-weather
+                     tag: "$WEATHERTag"
+EOF
+                git add -A
+                git commit -m "testing jenkins"
+                git push https://jlaguardia7:$TOKEN@github.com/jlaguardia7/s4-pipeline-practise.git
+                '''
 
-post {
+                    }
+                }
+            }
+        }
+        stage('Wait for argocd') {
+            when{ 
+            
+                expression {
+                  env.Environment == 'DEV' }
+            }
+            steps {
+                sh '''
+
+                '''
+
+            }
+        }
+    }
+}
+
+post    
    
    success {
       slackSend (channel: '#development-alerts', color: 'good', message: "SUCCESSFUL: Application S4-EKTSS  Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
@@ -257,7 +413,3 @@ post {
     cleanup {
       deleteDir()
     }
-}
-
-
-                }

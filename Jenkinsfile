@@ -35,21 +35,21 @@ options {
                             ),
 
                         string(
-                            defaultValue: 'eric-001',
+                            defaultValue: 'v3.0.0',
                             name: 'DBTag',
 			                description: 'Required to enter your image tag',
                             trim: true
                             ),
 
                         string(
-                            defaultValue: 'eric-001',
+                            defaultValue: 'v3.0.0',
                             name: 'UITag',
 			                description: 'Required to enter your image tag',
                             trim: true
                             ),
 
                         string(
-                            defaultValue: 'eric-001',
+                            defaultValue: 'v3.0.0',
                             name: 'WEATHERTag',
 			                description: 'Required to enter your image tag',
                             trim: true
@@ -57,7 +57,7 @@ options {
                 
 
                         string(
-                            defaultValue: 'eric-001',
+                            defaultValue: 'v3.0.0',
                             name: 'AUTHTag',
 			                description: 'Required to enter your image tag',
                             trim: true

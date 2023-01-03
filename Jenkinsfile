@@ -380,11 +380,11 @@ EOF
             }
         }
         stage('Wait for argocd') {
-            when{ 
+            // when{ 
             
-                // expression {
-                //   env.Environment == 'DEV' }
-            }
+            //     expression {
+            //       env.Environment == 'DEV' }
+            // }
             steps {
                 sh '''
 

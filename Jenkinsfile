@@ -74,8 +74,8 @@ options {
         stage('Permission') {
             steps {
                 sh '''
-cat permission.txt | grep -o $USER
-echo $!
+                cat permission.txt | grep -o $USER
+                echo $!
 
                 '''
             }
@@ -205,10 +205,10 @@ echo $!
             }
             steps {
                 sh '''
-                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITAG
-                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTAG
-                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTAH
-                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTAG
+                docker push devopseasylearning2021/s4-ui:$UITAG
+                docker push devopseasylearning2021/s4-db:$DBTAG
+                docker push devopseasylearning2021/s4-auth:$AUTHTAH
+                docker push devopseasylearning2021/s4-weather:$WEATHERTAG
                 '''
 
                     }
@@ -223,10 +223,10 @@ echo $!
 
             steps {
                 sh '''
-                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITAG
-                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTAG
-                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTAH
-                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTAG
+                docker push devopseasylearning2021/s4-ui:$UITAG
+                docker push devopseasylearning2021/s4-db:$DBTAG
+                docker push devopseasylearning2021/s4-auth:$AUTHTAH
+                docker push devopseasylearning2021/s4-weather:$WEATHERTAG
                 '''
 
                     }
@@ -241,10 +241,10 @@ echo $!
 
             steps {
                 sh '''
-                docker push devopseasylearning2021/s4-ui:${BUILD_NUMBER}$UITAG
-                docker push devopseasylearning2021/s4-db:${BUILD_NUMBER}$DBTAG
-                docker push devopseasylearning2021/s4-auth:${BUILD_NUMBER}$AUTHTAH
-                docker push devopseasylearning2021/s4-weather:${BUILD_NUMBER}$WEATHERTAG
+                docker push devopseasylearning2021/s4-ui:$UITAG
+                docker push devopseasylearning2021/s4-db:$DBTAG
+                docker push devopseasylearning2021/s4-auth:$AUTHTAH
+                docker push devopseasylearning2021/s4-weather:$WEATHERTAG
                 '''
 
                     }

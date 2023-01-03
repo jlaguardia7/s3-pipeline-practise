@@ -205,10 +205,10 @@ options {
             }
             steps {
                 sh '''
-                docker push devopseasylearning2021/s4-ui:$UITAG
-                docker push devopseasylearning2021/s4-db:$DBTAG
-                docker push devopseasylearning2021/s4-auth:$AUTHTAH
-                docker push devopseasylearning2021/s4-weather:$WEATHERTAG
+                docker push devopseasylearning2021/s4-ui:$UITag
+                docker push devopseasylearning2021/s4-db:$DBTag
+                docker push devopseasylearning2021/s4-auth:$AUTHTag
+                docker push devopseasylearning2021/s4-weather:$WEATHERTag
                 '''
 
                     }
@@ -223,10 +223,10 @@ options {
 
             steps {
                 sh '''
-                docker push devopseasylearning2021/s4-ui:$UITAG
-                docker push devopseasylearning2021/s4-db:$DBTAG
-                docker push devopseasylearning2021/s4-auth:$AUTHTAH
-                docker push devopseasylearning2021/s4-weather:$WEATHERTAG
+                docker push devopseasylearning2021/s4-ui:$UITag
+                docker push devopseasylearning2021/s4-db:$DBTag
+                docker push devopseasylearning2021/s4-auth:$AUTHTag
+                docker push devopseasylearning2021/s4-weather:$WEATHERTag
                 '''
 
                     }
@@ -241,10 +241,10 @@ options {
 
             steps {
                 sh '''
-                docker push devopseasylearning2021/s4-ui:$UITAG
-                docker push devopseasylearning2021/s4-db:$DBTAG
-                docker push devopseasylearning2021/s4-auth:$AUTHTAH
-                docker push devopseasylearning2021/s4-weather:$WEATHERTAG
+                docker push devopseasylearning2021/s4-ui:$UITag
+                docker push devopseasylearning2021/s4-db:$DBTag
+                docker push devopseasylearning2021/s4-auth:$AUTHTag
+                docker push devopseasylearning2021/s4-weather:$WEATHERTag
                 '''
 
                     }
